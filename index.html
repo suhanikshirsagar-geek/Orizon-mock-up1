@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orizon — Gaming Brands. Partner Programs. Built to Scale.</title>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root{
+  --bd:#1E2F96;
+  --bl:#1AA7EC;
+  --pear:#C2E812;
+  --wh:#FFFFFF;
+  --blk:#000000;
+  --dark:#080C1A;
+  --dark2:#0D1224;
+  --muted:#6B7280;
+  --light:#F7F8FA;
+  --border:rgba(30,47,150,.1);
+  --grad:linear-gradient(135deg,#1E2F96 0%,#1AA7EC 100%);
+  --grad-h:linear-gradient(135deg,#1AA7EC 0%,#1E2F96 100%);
+  --ff-d:"Audiowide",sans-serif;
+  --ff-b:"Roboto",sans-serif;
+  --ff-a:"Pacifico",cursive;
+  /* O-shape pattern — dark on white */
+  --pat-dk:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(30,47,150,0.07)' stroke-width='1.6' transform='rotate(-35,40,40)'%3E%3Crect x='10' y='25' width='38' height='24' rx='12'/%3E%3Cline x1='15' y1='37' x2='44' y2='37'/%3E%3C/g%3E%3C/svg%3E");
+  /* O-shape pattern — light on dark */
+  --pat-lt:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1.6' transform='rotate(-35,40,40)'%3E%3Crect x='10' y='25' width='38' height='24' rx='12'/%3E%3Cline x1='15' y1='37' x2='44' y2='37'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--ff-b);color:#111827;background:var(--wh);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+:focus-visible{outline:2px solid var(--bl);outline-offset:3px;border-radius:3px;}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.wrap{width:min(1240px,90%);margin-inline:auto;}
+.wrap-wide{width:min(1440px,96%);margin-inline:auto;}
+
+/* =========================================================
+   TYPOGRAPHY HELPERS
+   ========================================================= */
+.eyebrow{font-family:var(--ff-d);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bl);display:inline-flex;align-items:center;gap:.65rem;margin-bottom:1.1rem;}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--bl);flex-shrink:0;}
+.eyebrow--c{display:flex;justify-content:center;}
+.eyebrow--w{color:rgba(255,255,255,.5);}
+.eyebrow--w::before{background:rgba(255,255,255,.35);}
+.eyebrow--pear{color:var(--pear);}
+.eyebrow--pear::before{background:var(--pear);}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--ff-d);font-size:.73rem;letter-spacing:.05em;text-transform:uppercase;padding:.9rem 2rem;border-radius:4px;transition:all .28s cubic-bezier(.25,.46,.45,.94);white-space:nowrap;cursor:pointer;position:relative;overflow:hidden;}
+.btn::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .2s;}
+.btn:hover::after{background:rgba(255,255,255,.08);}
+
+.btn-primary{background:var(--grad);color:var(--wh);box-shadow:0 6px 28px rgba(26,167,236,.28);}
+.btn-primary:hover{box-shadow:0 10px 36px rgba(26,167,236,.42);transform:translateY(-2px);}
+
+.btn-outline{border:1.5px solid var(--bd);color:var(--bd);}
+.btn-outline:hover{background:var(--bd);color:var(--wh);transform:translateY(-2px);}
+
+.btn-pear{background:var(--pear);color:var(--blk);font-weight:700;}
+.btn-pear:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(194,232,18,.38);}
+
+.btn-ghost-w{border:1.5px solid rgba(255,255,255,.35);color:var(--wh);}
+.btn-ghost-w:hover{border-color:var(--wh);background:rgba(255,255,255,.08);}
+
+.btn-white{background:var(--wh);color:var(--bd);}
+.btn-white:hover{background:var(--light);}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv.in-left{opacity:1;transform:translateX(0)!important;}
+.rv-left{opacity:0;transform:translateX(-32px);transition:opacity .65s ease,transform .65s ease;}
+.rv-right{opacity:0;transform:translateX(32px);transition:opacity .65s ease,transform .65s ease;}
+.rv-right.in,
+.rv-left.in{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+#hdr{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:80px;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(30,47,150,.06);
+  transition:box-shadow .3s,background .3s;
+}
+#hdr.scrolled{box-shadow:0 2px 30px rgba(30,47,150,.1);}
+.hdr-inner{
+  width:min(1440px,96%);margin-inline:auto;
+  height:100%;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.hdr-logo img{
+  height:32px;
+  filter:brightness(0) saturate(1) invert(16%) sepia(86%) saturate(2200%) hue-rotate(210deg) brightness(80%);
+}
+.hdr-nav{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:2.4rem;
+}
+.hdr-nav a{
+  font-size:.85rem;font-weight:500;color:#374151;
+  position:relative;padding:.25rem 0;
+  transition:color .2s;
+}
+.hdr-nav a:hover{color:var(--bd);}
+.hdr-nav a::after{
+  content:"";position:absolute;bottom:-4px;left:0;right:0;
+  height:2px;background:var(--grad);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.hdr-nav a:hover::after{transform:scaleX(1);}
+.hdr-ctas{display:flex;align-items:center;gap:.7rem;flex-shrink:0;}
+.hdr-ctas .btn{padding:.6rem 1.25rem;font-size:.68rem;}
+.hdr-ctas .btn-outline{border-color:rgba(30,47,150,.3);}
+
+/* Mobile hamburger */
+.hbg{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:36px;height:36px;padding:4px;margin-left:auto;
+  border-radius:4px;
+}
+.hbg span{display:block;width:22px;height:2px;background:var(--bd);transition:all .3s;border-radius:2px;}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hbg.open span:nth-child(2){opacity:0;}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mnav{
+  display:none;position:fixed;
+  top:80px;left:0;right:0;bottom:0;z-index:898;
+  background:var(--wh);padding:2rem 5%;
+  flex-direction:column;gap:0;
+  overflow-y:auto;
+}
+.mnav.open{display:flex;}
+.mnav a{font-size:1.1rem;font-weight:500;color:#111827;padding:1rem 0;border-bottom:1px solid var(--light);}
+.mnav .btn{margin-top:1.4rem;width:100%;font-size:.8rem;}
+
+/* =========================================================
+   HERO — WHITE, EDITORIAL, SPLIT
+   ========================================================= */
+#hero{
+  min-height:calc(100svh - 80px);padding-top:80px;
+  background:var(--wh);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+  position:relative;
+}
+/* left panel */
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 3rem 4rem min(8vw,5rem);
+  position:relative;z-index:2;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--ff-d);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--bd);padding:.4rem 1rem;
+  border:1px solid rgba(30,47,150,.2);border-radius:2px;
+  background:rgba(30,47,150,.04);
+  margin-bottom:2rem;width:fit-content;
+}
+.hero-kicker-dot{width:5px;height:5px;border-radius:50%;background:var(--pear);}
+.hero-h1{
+  font-family:var(--ff-d);
+  font-size:clamp(2.2rem,4.5vw,4rem);
+  color:var(--dark);
+  line-height:1.08;
+  margin-bottom:1.6rem;
+  letter-spacing:-.01em;
+}
+.hero-h1 .accent{
+  display:block;
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:1rem;color:var(--muted);line-height:1.8;
+  max-width:440px;margin-bottom:2rem;
+}
+.hero-sub strong{color:#111827;font-weight:600;}
+.hero-proof{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.8rem;}
+.hero-proof-tag{
+  font-size:.72rem;font-weight:500;color:#374151;
+  background:var(--light);
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:2px;padding:.3rem .75rem;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:2.4rem;}
+@keyframes heroCtaIn{
+  from{opacity:0;transform:translateY(16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.hero-ctas .btn{animation:heroCtaIn .65s cubic-bezier(.25,.46,.45,.94) both;}
+.hero-ctas .btn:nth-child(2){animation-delay:.12s;}
+.hero-micro{
+  font-size:.78rem;color:#9CA3AF;
+  display:flex;align-items:center;gap:.5rem;
+}
+.hero-micro::before{content:"";width:20px;height:1px;background:#D1D5DB;flex-shrink:0;}
+
+/* right panel — full-bleed image */
+.hero-right{
+  position:relative;overflow:hidden;
+  background:var(--light);
+}
+.hero-right::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 60% 50%,rgba(26,167,236,.12) 0%,transparent 65%);
+  z-index:1;pointer-events:none;
+}
+/* subtle grid dots on hero bg */
+.hero-right::after{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(30,47,150,.06) 1px,transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;z-index:0;
+}
+.hero-img-main{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem;z-index:2;
+}
+.hero-img-main img{
+  max-height:90%;object-fit:contain;
+  filter:drop-shadow(0 30px 80px rgba(30,47,150,.18));
+  animation:heroImgIn .9s .2s cubic-bezier(.25,.46,.45,.94) both;
+}
+@keyframes heroImgIn{
+  from{opacity:0;transform:scale(.95) translateY(16px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+/* vertical accent stripe */
+.hero-stripe{
+  position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--grad);z-index:3;
+}
+/* floating stat chips */
+.hero-chip{
+  position:absolute;z-index:4;
+  background:var(--wh);border-radius:8px;
+  box-shadow:0 8px 36px rgba(0,0,0,.12);
+  padding:.75rem 1.1rem;
+  display:flex;align-items:center;gap:.7rem;
+  animation:chipIn .7s cubic-bezier(.25,.46,.45,.94) both;
+}
+.hero-chip-1{bottom:22%;right:8%;animation-delay:.55s;}
+.hero-chip-2{top:25%;right:6%;animation-delay:.7s;}
+@keyframes chipIn{
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.chip-num{font-family:var(--ff-d);font-size:1.4rem;color:var(--bd);line-height:1;}
+.chip-lbl{font-size:.72rem;color:var(--muted);line-height:1.3;}
+.chip-bar{width:36px;height:36px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chip-bar svg{width:16px;height:16px;color:var(--wh);}
+
+/* =========================================================
+   LOGO TICKER
+   ========================================================= */
+#logos{
+  padding:1.6rem 0;
+  background:var(--dark);
+  border-top:1px solid rgba(255,255,255,.04);
+  overflow:hidden;
+}
+.ticker-track{
+  display:flex;gap:3.5rem;align-items:center;
+  width:max-content;
+  animation:ticker 28s linear infinite;
+}
+.ticker-track img{
+  height:26px;object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.5;
+  transition:opacity .2s;
+  flex-shrink:0;
+}
+.ticker-track img:hover{opacity:.9;}
+@keyframes ticker{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* =========================================================
+   TWO ENGINES
+   ========================================================= */
+#engines{padding:8rem 0;background:var(--wh);}
+.eng-hdr{max-width:640px;margin-bottom:3.5rem;}
+.eng-hdr h2{font-family:var(--ff-d);font-size:clamp(1.6rem,3vw,2.6rem);color:var(--dark);line-height:1.1;margin-bottom:.9rem;}
+.eng-hdr p{font-size:.98rem;color:var(--muted);line-height:1.75;}
+.eng-tabs{
+  display:flex;gap:0;
+  border-bottom:2px solid var(--light);
+  margin-bottom:3.5rem;
+}
+.etab{
+  font-family:var(--ff-d);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:.9rem 2rem;color:var(--muted);
+  border-bottom:3px solid transparent;
+  margin-bottom:-2px;
+  transition:all .25s;
+  white-space:nowrap;
+  background:none;
+}
+.etab.ac{color:var(--bd);border-bottom-color:var(--bd);}
+.etab:hover:not(.ac){color:#374151;}
+.epanel{display:none;}
+.epanel.ac{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  animation:epIn .35s ease both;
+}
+@keyframes epIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.epanel[data-side="right"] .econtent{order:2;}
+.epanel[data-side="right"] .evis{order:1;}
+.econtent h3{
+  font-family:var(--ff-d);font-size:clamp(1.3rem,2.2vw,1.9rem);
+  color:var(--dark);margin-bottom:1rem;line-height:1.15;
+}
+.econtent h3 span{color:var(--bl);}
+.econtent .edesc{
+  font-size:.97rem;color:var(--muted);line-height:1.8;
+  margin-bottom:1.6rem;
+}
+.efeats{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.65rem 1.2rem;
+  margin-bottom:2rem;
+}
+.efeat{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.875rem;color:#374151;
+  line-height:1.5;
+}
+.efeat::before{
+  content:"";min-width:6px;height:6px;
+  border-radius:50%;background:var(--bl);
+  flex-shrink:0;margin-top:.45rem;
+}
+.evis{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:5/4;}
+.eslides{position:relative;width:100%;height:100%;}
+.eslide{
+  position:absolute;inset:0;
+  opacity:0;transition:opacity .6s ease;
+}
+.eslide.ac{opacity:1;}
+.eslide img{width:100%;height:100%;object-fit:cover;}
+.eslide-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(30,47,150,.1) 0%,transparent 55%);
+  pointer-events:none;
+}
+.edots{
+  position:absolute;bottom:.9rem;left:1rem;
+  display:flex;gap:.4rem;z-index:5;
+}
+.edot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.4);cursor:pointer;
+  transition:all .3s;
+}
+.edot.ac{background:var(--wh);width:18px;border-radius:3px;}
+.evis-badge{
+  position:absolute;top:1rem;right:1rem;z-index:5;
+  background:var(--grad);color:var(--wh);
+  font-family:var(--ff-d);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .8rem;border-radius:2px;
+}
+
+/* =========================================================
+   COMPLETE RANGES
+   ========================================================= */
+#ranges{
+  padding:8rem 0;
+  background:var(--light);
+  background-image:var(--pat-dk);
+  background-size:80px 80px;
+  position:relative;
+}
+#ranges::before{
+  content:"";position:absolute;inset:0;
+  background:rgba(247,248,250,.93);
+  pointer-events:none;
+}
+.rng-inner{position:relative;z-index:1;}
+.rng-hdr{text-align:center;margin-bottom:4rem;}
+.rng-hdr h2{font-family:var(--ff-d);font-size:clamp(1.6rem,2.8vw,2.4rem);color:var(--dark);margin-bottom:.75rem;}
+.rng-hdr p{color:var(--muted);max-width:580px;margin-inline:auto;font-size:.97rem;line-height:1.7;}
+
+/* Ranges — two differentiated cards side by side */
+.rng-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:16px;overflow:hidden;}
+
+/* Card A — Core Ranges — clean white */
+.rcard-a{
+  background:var(--wh);padding:3rem;
+  display:flex;flex-direction:column;
+  position:relative;
+  overflow:hidden;
+}
+.rcard-a::before{
+  content:"";position:absolute;top:0;left:0;right:0;
+  height:4px;background:var(--grad);
+}
+.rcard-a-img{
+  width:100%;height:240px;
+  border-radius:8px;overflow:hidden;margin-bottom:2rem;
+  position:relative;
+}
+.rcard-a-img img{width:100%;height:100%;object-fit:cover;}
+.rcard-a-hd{
+  font-family:var(--ff-d);font-size:1.2rem;color:var(--dark);
+  margin-bottom:.55rem;
+}
+.rcard-a-sub{
+  font-size:.83rem;color:var(--bl);font-weight:500;
+  margin-bottom:.9rem;
+}
+.rcard-a-p{font-size:.92rem;color:var(--muted);line-height:1.7;margin-bottom:1.6rem;}
+.rbulls{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.8rem;}
+.rbull{
+  display:flex;align-items:flex-start;gap:.7rem;
+  font-size:.875rem;color:#374151;
+}
+.rbull-icon{
+  min-width:18px;height:18px;
+  background:var(--grad);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.rbull-icon svg{width:9px;height:9px;color:var(--wh);}
+
+/* Card B — Licensed — dark */
+.rcard-b{
+  background:var(--dark);
+  padding:3rem;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.rcard-b::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(26,167,236,.12) 0%,transparent 60%);
+  pointer-events:none;
+}
+.rcard-b-badge{
+  display:inline-block;
+  background:var(--pear);color:var(--blk);
+  font-family:var(--ff-d);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.3rem .8rem;border-radius:2px;font-weight:700;
+  margin-bottom:1.4rem;width:fit-content;
+}
+.rcard-b-img{
+  width:100%;height:240px;
+  border-radius:8px;overflow:hidden;margin-bottom:2rem;
+  position:relative;border:1px solid rgba(255,255,255,.07);
+}
+.rcard-b-img img{width:100%;height:100%;object-fit:cover;opacity:.8;}
+.rcard-b-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,var(--dark) 100%);
+}
+.rcard-b-hd{font-family:var(--ff-d);font-size:1.2rem;color:var(--wh);margin-bottom:.55rem;}
+.rcard-b-sub{font-size:.83rem;color:var(--bl);font-weight:500;margin-bottom:.9rem;}
+.rcard-b-p{font-size:.92rem;color:rgba(255,255,255,.58);line-height:1.7;margin-bottom:1.6rem;}
+.rcard-b .rbull{color:rgba(255,255,255,.75);}
+/* partner logo strip */
+.rcard-b-logos{
+  display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:auto;padding-top:1.4rem;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.rcard-b-logos img{
+  height:20px;object-fit:contain;
+  filter:brightness(0) invert(1);opacity:.45;
+  transition:opacity .2s;
+}
+.rcard-b-logos img:hover{opacity:.9;}
+
+/* =========================================================
+   QUOTE / TESTIMONIAL
+   ========================================================= */
+#quote{
+  padding:0;
+  background:var(--bd);
+  background-image:var(--pat-lt);background-size:80px 80px;
+  position:relative;overflow:hidden;
+}
+#quote::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 80% at 80% 50%,rgba(26,167,236,.22) 0%,transparent 65%);
+  pointer-events:none;
+}
+.quote-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:stretch;position:relative;z-index:1;
+  min-height:500px;
+}
+.quote-img{overflow:hidden;position:relative;}
+.quote-img img{width:100%;height:100%;object-fit:cover;opacity:.65;}
+.quote-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--bd) 0%,transparent 60%);
+}
+.quote-content{
+  padding:5rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.quote-mark{
+  font-family:var(--ff-a);font-size:5rem;line-height:.8;
+  color:var(--pear);margin-bottom:1.2rem;
+  opacity:.8;
+}
+.quote-text{
+  font-family:var(--ff-d);
+  font-size:clamp(1.15rem,1.9vw,1.5rem);
+  color:var(--wh);line-height:1.55;
+  margin-bottom:1.6rem;
+}
+.quote-attr{font-size:.875rem;color:rgba(255,255,255,.5);}
+.quote-attr strong{color:rgba(255,255,255,.8);font-weight:500;}
+
+/* =========================================================
+   METRICS — SCALE
+   ========================================================= */
+#metrics{
+  padding:8rem 0;
+  background:var(--dark);
+  background-image:var(--pat-lt);background-size:80px 80px;
+  position:relative;overflow:hidden;
+}
+#metrics::before{
+  content:"";position:absolute;
+  top:-200px;right:-200px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,167,236,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.met-inner{position:relative;z-index:1;}
+.met-hdr{max-width:600px;margin-bottom:5rem;}
+.met-hdr h2{font-family:var(--ff-d);font-size:clamp(1.7rem,3vw,2.7rem);color:var(--wh);margin-bottom:.7rem;}
+.met-hdr .tagline{font-family:var(--ff-a);font-size:1.1rem;color:var(--pear);}
+
+.met-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.met-counters{display:flex;flex-direction:column;gap:3.5rem;}
+.mcount-row{display:flex;flex-direction:column;gap:.4rem;}
+.mcount-num{
+  font-family:var(--ff-d);
+  font-size:clamp(3rem,5vw,5rem);
+  line-height:1;
+  background:linear-gradient(135deg,#fff 0%,var(--bl) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.mcount-lbl{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.5;}
+.mcount-bar{
+  height:3px;background:rgba(255,255,255,.07);
+  border-radius:2px;margin-top:.7rem;overflow:hidden;
+}
+.mcount-fill{
+  height:100%;background:var(--grad);
+  border-radius:2px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.mcount-fill.go{transform:scaleX(1);}
+
+/* right side — radial chart / visual */
+.met-visual{position:relative;}
+.met-chart{width:100%;aspect-ratio:1;max-width:400px;margin:0 auto;}
+.met-chart svg{width:100%;height:100%;}
+/* chart rings animate */
+.ring-fill{
+  stroke-dasharray:0 400;
+  transition:stroke-dasharray 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.ring-fill.go-a{stroke-dasharray:300 400;}
+.ring-fill.go-b{stroke-dasharray:220 400;}
+.ring-fill.go-c{stroke-dasharray:160 400;}
+.met-chart-legend{
+  display:flex;flex-direction:column;gap:.8rem;
+  margin-top:1.5rem;
+}
+.mcl{display:flex;align-items:center;gap:.7rem;}
+.mcl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.mcl-txt{font-size:.82rem;color:rgba(255,255,255,.58);}
+
+/* =========================================================
+   HOW WE WORK
+   ========================================================= */
+#hww{padding:8rem 0;background:var(--wh);}
+.hww-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:center;
+}
+.hww-txt h2{
+  font-family:var(--ff-d);
+  font-size:clamp(1.6rem,2.8vw,2.4rem);
+  color:var(--dark);line-height:1.1;
+  margin-bottom:.85rem;
+}
+.hww-txt .hww-sub{
+  font-size:.97rem;color:var(--muted);line-height:1.8;
+  margin-bottom:2.8rem;
+}
+.hww-steps{display:flex;flex-direction:column;gap:0;}
+.hww-step{
+  display:grid;grid-template-columns:52px 1fr;
+  gap:1.2rem;padding-bottom:2.4rem;
+  position:relative;
+}
+.hww-step:not(:last-child)::after{
+  content:"";position:absolute;
+  left:26px;top:52px;
+  width:1px;height:calc(100% - 52px);
+  background:linear-gradient(180deg,rgba(26,167,236,.3) 0%,rgba(30,47,150,.08) 100%);
+}
+.hww-num{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--grad);color:var(--wh);
+  font-family:var(--ff-d);font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;position:relative;z-index:1;
+  box-shadow:0 6px 20px rgba(26,167,236,.28);
+}
+.hww-sc h3{
+  font-family:var(--ff-d);font-size:.95rem;color:var(--dark);
+  padding-top:.85rem;margin-bottom:.3rem;
+}
+.hww-sc p{font-size:.875rem;color:var(--muted);line-height:1.65;}
+/* right — stacked product images */
+.hww-imgs{
+  display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:12px;height:580px;
+}
+.hww-img1{
+  grid-column:1/3;grid-row:1/2;
+  border-radius:10px;overflow:hidden;
+}
+.hww-img2,.hww-img3{
+  border-radius:10px;overflow:hidden;
+}
+.hww-imgs img{width:100%;height:100%;object-fit:cover;}
+
+/* =========================================================
+   BRAND SECTIONS — DRAGONSHOCK & EGOGEAR
+   ========================================================= */
+.bsec{overflow:hidden;}
+.bsec--dark{background:var(--dark2);}
+.bsec--light{background:var(--wh);}
+.bsec-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:680px;
+}
+.bsec--rev .btxt-col{order:2;}
+.bsec--rev .bimg-col{order:1;}
+
+/* text side */
+.btxt-col{
+  padding:5rem 4rem 5rem min(6vw,4rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.bsec--rev .btxt-col{
+  padding:5rem min(6vw,4rem) 5rem 4rem;
+}
+.blogo{height:42px;object-fit:contain;margin-bottom:2rem;}
+.bsec--dark .blogo{filter:brightness(0) invert(1);}
+.bsec--light .blogo{
+  /* keep natural colors */
+}
+.bsec-h2{
+  font-family:var(--ff-d);
+  font-size:clamp(1.6rem,2.8vw,2.4rem);
+  line-height:1.1;margin-bottom:1rem;
+}
+.bsec--dark .bsec-h2{color:var(--wh);}
+.bsec--light .bsec-h2{color:var(--dark);}
+.bsec-tagline{
+  font-family:var(--ff-a);
+  font-size:1.1rem;margin-bottom:1.2rem;
+}
+.bsec--dark .bsec-tagline{color:var(--bl);}
+.bsec--light .bsec-tagline{color:var(--bd);}
+.bsec-p{font-size:.97rem;line-height:1.8;margin-bottom:1.8rem;}
+.bsec--dark .bsec-p{color:rgba(255,255,255,.6);}
+.bsec--light .bsec-p{color:var(--muted);}
+.bpills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.2rem;}
+.bpill{
+  font-family:var(--ff-d);font-size:.6rem;
+  letter-spacing:.07em;text-transform:uppercase;
+  padding:.38rem .9rem;border-radius:2px;
+}
+.bsec--dark .bpill{background:rgba(255,255,255,.06);color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.1);}
+.bsec--light .bpill{background:rgba(194,232,18,.1);color:#3a5000;border:1px solid rgba(194,232,18,.4);}
+
+/* image carousel side */
+.bimg-col{
+  position:relative;overflow:hidden;
+  background:var(--dark);
+}
+.bsec--light .bimg-col{background:var(--light);}
+.bcarousel{position:relative;width:100%;height:100%;min-height:500px;}
+.bslide{
+  position:absolute;inset:0;
+  opacity:0;transition:opacity .8s ease;
+  display:flex;align-items:center;justify-content:center;
+  padding:2.5rem;
+}
+.bslide.ac{opacity:1;}
+.bslide img{max-width:100%;max-height:100%;object-fit:contain;}
+.bsec--dark .bslide img{filter:drop-shadow(0 20px 60px rgba(26,167,236,.2));}
+.bsec--light .bslide img{filter:drop-shadow(0 20px 60px rgba(30,47,150,.12));}
+.bdots{
+  position:absolute;bottom:1.5rem;left:50%;
+  transform:translateX(-50%);
+  display:flex;gap:.5rem;z-index:10;
+}
+.bdot{
+  width:7px;height:7px;border-radius:50%;cursor:pointer;
+  transition:all .3s;
+}
+.bsec--dark .bdot{background:rgba(255,255,255,.22);}
+.bsec--dark .bdot.ac{background:var(--bl);width:22px;border-radius:3px;}
+.bsec--light .bdot{background:rgba(30,47,150,.2);}
+.bsec--light .bdot.ac{background:var(--bd);width:22px;border-radius:3px;}
+
+/* =========================================================
+   PILLARS — TAB COMPONENT
+   ========================================================= */
+#pillars{
+  padding:8rem 0;
+  background:var(--light);
+  background-image:var(--pat-dk);background-size:80px 80px;
+  position:relative;
+}
+#pillars::before{
+  content:"";position:absolute;inset:0;
+  background:rgba(247,248,250,.94);
+  pointer-events:none;
+}
+.pil-inner{position:relative;z-index:1;}
+.pil-hdr{text-align:center;margin-bottom:3.5rem;}
+.pil-hdr h2{font-family:var(--ff-d);font-size:clamp(1.6rem,2.8vw,2.3rem);color:var(--dark);margin-bottom:.6rem;}
+.pil-hdr p{color:var(--muted);max-width:520px;margin-inline:auto;font-size:.95rem;}
+.ptabs{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:.5rem;margin-bottom:3rem;
+}
+.ptab{
+  font-family:var(--ff-d);font-size:.67rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:.7rem 1.6rem;border-radius:2px;
+  border:1.5px solid rgba(30,47,150,.15);
+  color:var(--muted);background:var(--wh);
+  transition:all .25s;cursor:pointer;
+}
+.ptab.ac{
+  background:var(--grad);border-color:transparent;
+  color:var(--wh);box-shadow:0 5px 18px rgba(26,167,236,.3);
+}
+.ptab:hover:not(.ac){color:var(--bd);border-color:var(--bd);}
+.ppanel{display:none;}
+.ppanel.ac{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  animation:epIn .35s ease both;
+}
+.ppanel-img{
+  border-radius:10px;overflow:hidden;
+  aspect-ratio:4/3;position:relative;
+}
+.ppanel-img img{width:100%;height:100%;object-fit:cover;}
+.ppanel-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(30,47,150,.12) 0%,transparent 50%);
+}
+.ppanel-txt h3{
+  font-family:var(--ff-d);font-size:clamp(1.3rem,2.2vw,1.8rem);
+  color:var(--dark);margin-bottom:.8rem;
+}
+.ppanel-txt p{
+  font-size:.97rem;color:var(--muted);line-height:1.8;
+  margin-bottom:1.8rem;
+}
+.pstats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.pstat-box{
+  background:var(--wh);border-radius:8px;
+  padding:1.1rem;border-left:3px solid var(--bl);
+}
+.pstat-n{font-family:var(--ff-d);font-size:1.4rem;color:var(--bd);}
+.pstat-l{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
+
+/* =========================================================
+   FINAL CTA — SLIDER
+   ========================================================= */
+#fcta{
+  padding:8rem 0;
+  background:var(--dark);
+  background-image:var(--pat-lt);background-size:80px 80px;
+  position:relative;overflow:hidden;
+}
+#fcta::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 70% at 25% 50%,rgba(26,167,236,.09) 0%,transparent 65%);
+  pointer-events:none;
+}
+.fcta-inner{position:relative;z-index:1;}
+.fcta-hdr{text-align:center;margin-bottom:.75rem;}
+.fcta-hdr h2{font-family:var(--ff-d);font-size:clamp(1.6rem,2.8vw,2.4rem);color:var(--wh);}
+.fcta-tagline{
+  font-family:var(--ff-a);font-size:1.05rem;
+  color:var(--pear);text-align:center;margin-bottom:3.5rem;
+}
+/* slider track */
+.fslider-wrap{position:relative;overflow:hidden;}
+.fslider{
+  display:flex;gap:1.8rem;
+  transition:transform .55s cubic-bezier(.25,.46,.45,.94);
+}
+.fslide{
+  flex:0 0 calc(33.333% - 1.2rem);
+  min-width:280px;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+/* Slide 1 — Retailers */
+.fslide:nth-child(1){background:var(--grad);}
+/* Slide 2 — Press */
+.fslide:nth-child(2){background:var(--dark2);border:1px solid rgba(255,255,255,.07);}
+/* Slide 3 — Careers */
+.fslide:nth-child(3){background:var(--pear);}
+.fslide-img{height:220px;overflow:hidden;position:relative;}
+.fslide-img img{width:100%;height:100%;object-fit:cover;opacity:.7;}
+.fslide:nth-child(1) .fslide-img img{opacity:.45;}
+.fslide:nth-child(3) .fslide-img img{opacity:.5;mix-blend-mode:multiply;}
+.fslide-img-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.4) 100%);}
+.fslide-body{padding:2rem;flex:1;display:flex;flex-direction:column;}
+.fslide h3{font-family:var(--ff-d);font-size:1.1rem;margin-bottom:.6rem;}
+.fslide:nth-child(1) h3{color:var(--wh);}
+.fslide:nth-child(2) h3{color:var(--wh);}
+.fslide:nth-child(3) h3{color:var(--blk);}
+.fslide p{font-size:.88rem;line-height:1.65;margin-bottom:1.5rem;flex:1;}
+.fslide:nth-child(1) p{color:rgba(255,255,255,.75);}
+.fslide:nth-child(2) p{color:rgba(255,255,255,.55);}
+.fslide:nth-child(3) p{color:rgba(0,0,0,.65);}
+.fslide .btn{font-size:.67rem;padding:.65rem 1.4rem;border-radius:2px;align-self:flex-start;}
+.fsnav{display:flex;justify-content:center;gap:.6rem;margin-top:2rem;}
+.fsdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .3s;}
+.fsdot.ac{background:var(--bl);width:24px;border-radius:3px;}
+.fslider-arr{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:var(--wh);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:5;transition:background .2s;
+}
+.fslider-arr:hover{background:rgba(255,255,255,.16);}
+.fslider-prev{left:-.8rem;}
+.fslider-next{right:-.8rem;}
+.fslider-arr svg{width:16px;height:16px;}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+#faq{padding:7rem 0;background:var(--wh);}
+.faq-hdr{text-align:center;margin-bottom:3rem;}
+.faq-hdr h2{font-family:var(--ff-d);font-size:clamp(1.4rem,2.5vw,2rem);color:var(--dark);}
+.faq-list{max-width:740px;margin-inline:auto;display:flex;flex-direction:column;gap:.6rem;}
+.fitem{border:1.5px solid rgba(30,47,150,.09);border-radius:8px;overflow:hidden;transition:border-color .3s;}
+.fitem.open{border-color:rgba(26,167,236,.3);}
+.fq{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 1.6rem;cursor:pointer;background:var(--wh);
+  gap:1rem;
+}
+.fq h3{font-size:.97rem;font-weight:600;color:var(--dark);}
+.fchev{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(30,47,150,.05);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:transform .3s,background .3s;
+}
+.fitem.open .fchev{transform:rotate(180deg);background:var(--grad);}
+.fchev svg{width:11px;height:11px;color:var(--bd);}
+.fitem.open .fchev svg{color:var(--wh);}
+.fa{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.25,.46,.45,.94);}
+.fitem.open .fa{max-height:220px;}
+.fa p{padding:0 1.6rem 1.3rem;font-size:.92rem;color:var(--muted);line-height:1.75;}
+
+/* =========================================================
+   BIG CTA BAND
+   ========================================================= */
+#bigcta{
+  padding:6rem 0;
+  background:var(--grad);
+  position:relative;overflow:hidden;
+}
+#bigcta::before{
+  content:"";position:absolute;inset:0;
+  background-image:var(--pat-lt);background-size:80px 80px;
+  opacity:.35;pointer-events:none;
+}
+.bcta-inner{
+  position:relative;z-index:1;
+  display:flex;align-items:center;
+  justify-content:space-between;gap:2rem;flex-wrap:wrap;
+}
+.bcta-txt h2{
+  font-family:var(--ff-d);font-size:clamp(1.4rem,2.5vw,2.1rem);
+  color:var(--wh);margin-bottom:.5rem;
+}
+.bcta-txt p{color:rgba(255,255,255,.78);font-size:.97rem;}
+.bcta-ctas{display:flex;gap:.85rem;flex-wrap:wrap;flex-shrink:0;}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+#ftr{background:var(--dark2);padding:5rem 0 2rem;}
+.ftr-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1.8fr;
+  gap:3rem;margin-bottom:3rem;
+}
+.fbrand img{height:28px;filter:brightness(0) invert(1);margin-bottom:1.2rem;}
+.fbrand p{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.65;max-width:250px;}
+.fcol h4{
+  font-family:var(--ff-d);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);margin-bottom:1.2rem;
+}
+.fcol ul{display:flex;flex-direction:column;gap:.6rem;}
+.fcol a{font-size:.85rem;color:rgba(255,255,255,.52);transition:color .2s;}
+.fcol a:hover{color:var(--bl);}
+.femail{
+  font-family:var(--ff-d);font-size:.88rem;color:var(--wh);
+  display:block;margin-bottom:.7rem;transition:color .2s;
+}
+.femail:hover{color:var(--bl);}
+.fsoc{display:flex;gap:.55rem;margin-top:.8rem;}
+.fsoc a{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.45);transition:all .22s;
+}
+.fsoc a:hover{background:var(--grad);border-color:transparent;color:var(--wh);}
+.fsoc svg{width:14px;height:14px;}
+.fbot{
+  border-top:1px solid rgba(255,255,255,.05);
+  padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:.8rem;
+}
+.fbot p{font-size:.77rem;color:rgba(255,255,255,.24);}
+.flegal{display:flex;gap:1.6rem;}
+.flegal a{font-size:.77rem;color:rgba(255,255,255,.24);transition:color .2s;}
+.flegal a:hover{color:rgba(255,255,255,.5);}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media(max-width:1100px){
+  #hero{grid-template-columns:1fr;}
+  .hero-left{padding:5rem 5% 3rem;text-align:center;}
+  .hero-kicker{margin-inline:auto;}
+  .hero-sub{max-width:100%;}
+  .hero-proof,.hero-ctas{justify-content:center;}
+  .hero-micro{justify-content:center;}
+  .hero-right{min-height:420px;}
+  .hero-chip{display:none;}
+  .epanel.ac{grid-template-columns:1fr;gap:2.5rem;}
+  .epanel[data-side="right"] .econtent{order:1;}
+  .epanel[data-side="right"] .evis{order:2;}
+  .rng-grid{grid-template-columns:1fr;}
+  .quote-inner{grid-template-columns:1fr;}
+  .quote-img{display:none;}
+  .quote-content{padding:4rem 5%;}
+  .met-layout{grid-template-columns:1fr;}
+  .met-chart{max-width:280px;}
+  .hww-grid{grid-template-columns:1fr;gap:3rem;}
+  .hww-imgs{display:none;}
+  .bsec-inner{grid-template-columns:1fr;}
+  .bimg-col{min-height:380px;}
+  .bsec--rev .btxt-col{order:1;}
+  .bsec--rev .bimg-col{order:2;}
+  .ppanel.ac{grid-template-columns:1fr;}
+  .fslide{flex:0 0 calc(50% - .9rem);}
+  .bcta-inner{flex-direction:column;text-align:center;}
+  .bcta-ctas{justify-content:center;}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+@media(max-width:768px){
+  .hdr-nav{display:none;}
+  .hdr-ctas .btn-outline{display:none;}
+  .hbg{display:flex;}
+  .eng-tabs{gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .etab{flex-shrink:0;}
+  .fslide{flex:0 0 90%;}
+  .ftr-grid{grid-template-columns:1fr;}
+  .fbot{flex-direction:column;text-align:center;}
+  .btxt-col,.bsec--rev .btxt-col{padding:3rem 5%;}
+  .quote-content{padding:3rem 5%;}
+  .hww-steps .hww-step{grid-template-columns:42px 1fr;}
+  .hww-num{width:42px;height:42px;font-size:.8rem;}
+  .hww-step:not(:last-child)::after{left:21px;}
+}
+@media(max-width:480px){
+  .hero-ctas{flex-direction:column;align-items:stretch;}
+  .hero-ctas .btn{width:100%;}
+  .efeats{grid-template-columns:1fr;}
+  .pstats{grid-template-columns:1fr;}
+  .fslider-arr{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="hdr" role="banner">
+  <div class="hdr-inner">
+    <a href="https://orizon-hub.com" class="hdr-logo" aria-label="Orizon — Homepage">
+      <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Orizon_white_transparent.png"
+           alt="Orizon" width="148" height="32">
+    </a>
+    <nav class="hdr-nav" aria-label="Main navigation">
+      <a href="#engines">What We Do</a>
+      <a href="#brands">Brands</a>
+      <a href="#ranges">Ranges</a>
+      <a href="#pillars">Partner Programs</a>
+      <a href="https://orizon-hub.com/press/">Press</a>
+      <a href="https://orizon-hub.com/about-us/">About</a>
+    </nav>
+    <div class="hdr-ctas">
+      <a href="https://orizon-hub.com/contact/" class="btn btn-outline">Request the line-up</a>
+      <a href="https://orizon-hub.com/contact/" class="btn btn-primary">Let's Talk</a>
+    </div>
+    <button class="hbg" id="hbg" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile navigation">
+  <a href="#engines">What We Do</a>
+  <a href="#brands">Brands</a>
+  <a href="#ranges">Ranges</a>
+  <a href="#pillars">Partner Programs</a>
+  <a href="https://orizon-hub.com/press/">Press</a>
+  <a href="https://orizon-hub.com/about-us/">About</a>
+  <a href="https://orizon-hub.com/contact/" class="btn btn-primary">Let's Talk</a>
+</nav>
+
+<main id="main" tabindex="-1">
+
+<!-- ===================== HERO ===================== -->
+<section id="hero" aria-labelledby="hero-h1">
+  <div class="hero-left">
+    <div class="hero-kicker" aria-hidden="true">
+      <span class="hero-kicker-dot"></span>
+      Retail-grade execution
+    </div>
+    <h1 class="hero-h1" id="hero-h1">
+      Gaming brands.<br>
+      Partner programs.<br>
+      <span class="accent">Built to scale.</span>
+    </h1>
+    <p class="hero-sub">
+      Orizon develops and scales gaming accessory brands through distribution and retail partnerships —
+      designed for <strong>durable shelf presence</strong>, not one-off drops.
+      We operate across Europe and selected international markets through
+      <strong>DragonShock, EgoGear</strong>, and partner programs for IP owners.
+    </p>
+    <div class="hero-proof" aria-label="Key capabilities">
+      <span class="hero-proof-tag">Core ranges</span>
+      <span class="hero-proof-tag">Licensed editions</span>
+      <span class="hero-proof-tag">Retail-ready execution</span>
+      <span class="hero-proof-tag">Europe specialist</span>
+      <span class="hero-proof-tag">International capable</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="https://orizon-hub.com/ranges/" class="btn btn-primary">Explore our ranges</a>
+      <a href="https://orizon-hub.com/our-brands/" class="btn btn-outline">Meet our brands</a>
+    </div>
+    <p class="hero-micro" aria-label="Supporting detail">
+      Proven across 50+ countries and 35+ retail groups
+    </p>
+  </div>
+  <div class="hero-right" aria-hidden="true">
+    <div class="hero-stripe"></div>
+    <div class="hero-img-main">
+      <img src="https://orizon-hub.com/wp-content/uploads/2024/12/Orizon-Front-Picture-946x1024.png"
+           alt="" width="480" height="520" loading="eager">
+    </div>
+    <!-- floating stat chips -->
+    <div class="hero-chip hero-chip-1">
+      <div class="chip-bar">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="2,12 6,7 10,9 14,3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="chip-num">50+</div>
+        <div class="chip-lbl">Countries reached</div>
+      </div>
+    </div>
+    <div class="hero-chip hero-chip-2">
+      <div class="chip-bar">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8" cy="8" r="6"/><polyline points="8,5 8,8 10,10"/>
+        </svg>
+      </div>
+      <div>
+        <div class="chip-num">240k+</div>
+        <div class="chip-lbl">Units shipped</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===================== TWO ENGINES ===================== -->
+<section id="engines" aria-labelledby="engines-h2">
+  <div class="wrap" style="padding:8rem 0;">
+    <div class="eng-hdr rv">
+      <div class="eyebrow">What we do</div>
+      <h2 id="engines-h2">Two engines.<br>One integrated approach.</h2>
+      <p>We build and scale gaming accessory brands through two distinct but interconnected capabilities — each designed for repeatable retail performance.</p>
+    </div>
+    <!-- tab buttons -->
+    <div class="eng-tabs" role="tablist" aria-label="Our two engines">
+      <button class="etab ac" role="tab" aria-selected="true" aria-controls="ep-a" id="et-a">
+        Distribution &amp; Retail Rollouts
+      </button>
+      <button class="etab" role="tab" aria-selected="false" aria-controls="ep-b" id="et-b">
+        Brand &amp; Product Development
+      </button>
+    </div>
+    <!-- Panel A -->
+    <div class="epanel ac" id="ep-a" role="tabpanel" aria-labelledby="et-a" data-side="left">
+      <div class="econtent rv">
+        <div class="eyebrow">Engine A</div>
+        <h3>Distribution &amp; <span>Retail Rollouts</span></h3>
+        <p class="edesc">
+          We activate gaming accessory ranges across Europe's key retail groups — managing the full chain from first conversation to live shelf. Our distribution network covers 35+ retail groups and 50+ countries.
+        </p>
+        <div class="efeats">
+          <span class="efeat">35+ retail group relationships</span>
+          <span class="efeat">Shelf activation &amp; trade support</span>
+          <span class="efeat">50+ countries covered</span>
+          <span class="efeat">Sell-through monitoring</span>
+          <span class="efeat">360 distribution management</span>
+          <span class="efeat">Always-on retail execution</span>
+        </div>
+        <a href="https://orizon-hub.com/contact/" class="btn btn-primary">Explore distribution</a>
+      </div>
+      <div class="evis rv d2">
+        <div class="eslides" data-engine="a">
+          <div class="eslide ac">
+            <img src="https://orizon-hub.com/wp-content/uploads/2025/02/Orizon-article-main-image-2.png" alt="Distribution network" loading="lazy">
+            <div class="eslide-ov"></div>
+          </div>
+          <div class="eslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-12-1024x644.png" alt="Retail partnerships" loading="lazy">
+            <div class="eslide-ov"></div>
+          </div>
+          <div class="eslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/2-1.png" alt="Market presence" loading="lazy">
+            <div class="eslide-ov"></div>
+          </div>
+        </div>
+        <div class="edots" role="tablist" aria-label="Engine A image slides">
+          <button class="edot ac" role="tab" aria-label="Slide 1"></button>
+          <button class="edot" role="tab" aria-label="Slide 2"></button>
+          <button class="edot" role="tab" aria-label="Slide 3"></button>
+        </div>
+        <div class="evis-badge">Engine A</div>
+      </div>
+    </div>
+    <!-- Panel B -->
+    <div class="epanel" id="ep-b" role="tabpanel" aria-labelledby="et-b" data-side="right">
+      <div class="econtent rv">
+        <div class="eyebrow">Engine B</div>
+        <h3>Brand &amp; <span>Product Development</span></h3>
+        <p class="edesc">
+          We create gaming accessory ranges from concept to shelf — product architecture, industrial design, packaging, compliance, and go-to-market strategy built for retail margins and repeatability.
+        </p>
+        <div class="efeats">
+          <span class="efeat">End-to-end product development</span>
+          <span class="efeat">Retail-margin engineering</span>
+          <span class="efeat">Licensed &amp; unlicensed ranges</span>
+          <span class="efeat">Brand identity &amp; packaging</span>
+          <span class="efeat">Compliance &amp; certification</span>
+          <span class="efeat">Go-to-market strategy</span>
+        </div>
+        <a href="https://orizon-hub.com/contact/" class="btn btn-primary">Explore development</a>
+      </div>
+      <div class="evis rv d2">
+        <div class="eslides" data-engine="b">
+          <div class="eslide ac">
+            <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGB-Sound-Bar.jpg" alt="Product range" loading="lazy">
+            <div class="eslide-ov"></div>
+          </div>
+          <div class="eslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGC02-PS2-BK-3D-03.png" alt="Controller design" loading="lazy">
+            <div class="eslide-ov"></div>
+          </div>
+          <div class="eslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-11-866x1024.png" alt="Brand development" loading="lazy">
+            <div class="eslide-ov"></div>
+          </div>
+        </div>
+        <div class="edots" role="tablist" aria-label="Engine B image slides">
+          <button class="edot ac" role="tab" aria-label="Slide 1"></button>
+          <button class="edot" role="tab" aria-label="Slide 2"></button>
+          <button class="edot" role="tab" aria-label="Slide 3"></button>
+        </div>
+        <div class="evis-badge">Engine B</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RANGES ===================== -->
+<section id="ranges" aria-labelledby="ranges-h2">
+  <div class="wrap rng-inner">
+    <div class="rng-hdr rv">
+      <div class="eyebrow eyebrow--c">Our Ranges</div>
+      <h2 id="ranges-h2">Complete ranges that perform</h2>
+      <p>Core lines and official licensed editions — retail-ready products designed for durable shelf presence and repeatable outcomes across every major category.</p>
+    </div>
+    <div class="rng-grid rv d2">
+      <!-- Card A — Core Ranges -->
+      <div class="rcard-a">
+        <div class="rcard-a-img">
+          <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGB-Sound-Bar.jpg"
+               alt="Core accessory ranges" loading="lazy">
+        </div>
+        <div class="eyebrow">Core Ranges</div>
+        <div class="rcard-a-hd">Non-Licensed Accessory Lines</div>
+        <div class="rcard-a-sub">Built-from-scratch gaming peripherals</div>
+        <p class="rcard-a-p">
+          Independently developed gaming accessory ranges engineered for retail margin performance.
+          From controllers to audio — every SKU designed with retail pricing, shelf appeal, and sell-through repeatability in mind.
+        </p>
+        <ul class="rbulls">
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            Controllers, headsets, audio bars
+          </li>
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            Retail-margin engineered pricing
+          </li>
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            CE-compliant &amp; shelf-ready
+          </li>
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            Continuously refreshed lineup
+          </li>
+        </ul>
+        <a href="https://orizon-hub.com/ranges/" class="btn btn-primary" style="align-self:flex-start;">View core ranges</a>
+      </div>
+      <!-- Card B — Licensed -->
+      <div class="rcard-b">
+        <div class="rcard-b-badge">Official Licensed</div>
+        <div class="rcard-b-img">
+          <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGC02-PS2-BK-3D-03.png"
+               alt="Licensed gaming editions" loading="lazy">
+        </div>
+        <div class="eyebrow eyebrow--w">Licensed Editions</div>
+        <div class="rcard-b-hd">Official Licensed Gaming Products</div>
+        <div class="rcard-b-sub">Selected IP partnerships &amp; official editions</div>
+        <p class="rcard-b-p">
+          Official licensed editions for world-leading gaming IP — bringing fan-favourite brands to retail shelves through structured partnerships with rights holders and platform holders.
+        </p>
+        <ul class="rbulls">
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            PlayStation, Xbox, Nintendo, SEGA
+          </li>
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            Full retail &amp; e-commerce activation
+          </li>
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            Co-developed product &amp; packaging
+          </li>
+          <li class="rbull">
+            <span class="rbull-icon">
+              <svg viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,4.5 3.5,7 9,1"/>
+              </svg>
+            </span>
+            Collectible editions for IP fans
+          </li>
+        </ul>
+        <div class="rcard-b-logos" aria-label="Licensed partners">
+          <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Sony.png" alt="PlayStation" height="20">
+          <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Xbox.png" alt="Xbox" height="20">
+          <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Nintendo.png" alt="Nintendo" height="20">
+          <img src="https://orizon-hub.com/wp-content/uploads/2024/11/SEGA.png" alt="SEGA" height="20">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUOTE ===================== -->
+<section id="quote" aria-label="Our position">
+  <div class="quote-inner">
+    <div class="quote-img" aria-hidden="true">
+      <img src="https://orizon-hub.com/wp-content/uploads/2025/02/Orizon-article-main-image-2.png"
+           alt="" loading="lazy">
+    </div>
+    <div class="quote-content rv">
+      <div class="quote-mark" aria-hidden="true">"</div>
+      <blockquote>
+        <p class="quote-text">
+          We don't launch products. We build ranges — and then we build the retail presence that makes them last.
+        </p>
+        <footer class="quote-attr">
+          <strong>Orizon</strong> — Gaming Brands &amp; Partner Programs
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METRICS ===================== -->
+<section id="metrics" aria-labelledby="metrics-h2">
+  <div class="wrap met-inner">
+    <div class="met-hdr rv">
+      <div class="eyebrow eyebrow--w">Proven at scale</div>
+      <h2 id="metrics-h2">Numbers that prove the model</h2>
+      <div class="tagline" style="font-family:var(--ff-a);font-size:1.1rem;color:var(--pear);margin-top:.5rem;">
+        Retail execution, measured.
+      </div>
+    </div>
+    <div class="met-layout">
+      <!-- counters -->
+      <div class="met-counters">
+        <div class="mcount-row rv" data-target="50" data-suffix="+">
+          <div class="mcount-num" id="cnt-0">0+</div>
+          <div class="mcount-lbl">Countries with active distribution</div>
+          <div class="mcount-bar"><div class="mcount-fill" style="--w:.85;"></div></div>
+        </div>
+        <div class="mcount-row rv d2" data-target="35" data-suffix="+">
+          <div class="mcount-num" id="cnt-1">0+</div>
+          <div class="mcount-lbl">Retail groups across Europe</div>
+          <div class="mcount-bar"><div class="mcount-fill" style="--w:.7;"></div></div>
+        </div>
+        <div class="mcount-row rv d3" data-target="240" data-suffix="k+">
+          <div class="mcount-num" id="cnt-2">0k+</div>
+          <div class="mcount-lbl">Units shipped globally</div>
+          <div class="mcount-bar"><div class="mcount-fill" style="--w:.95;"></div></div>
+        </div>
+      </div>
+      <!-- radial chart -->
+      <div class="met-visual rv d2">
+        <div class="met-chart" aria-label="Performance chart">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1E2F96"/>
+                <stop offset="1" stop-color="#1AA7EC"/>
+              </linearGradient>
+              <linearGradient id="rg2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1AA7EC"/>
+                <stop offset="1" stop-color="#C2E812"/>
+              </linearGradient>
+              <linearGradient id="rg3" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#C2E812"/>
+                <stop offset="1" stop-color="#1E2F96"/>
+              </linearGradient>
+            </defs>
+            <!-- Background rings -->
+            <circle cx="100" cy="100" r="72" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="18"/>
+            <circle cx="100" cy="100" r="50" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="18"/>
+            <circle cx="100" cy="100" r="28" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="18"/>
+            <!-- Animated fill rings -->
+            <circle id="ring-a" class="ring-fill" cx="100" cy="100" r="72"
+              fill="none" stroke="url(#rg1)" stroke-width="18"
+              stroke-linecap="round"
+              transform="rotate(-90 100 100)"
+              style="stroke-dasharray:0 452.4;"/>
+            <circle id="ring-b" class="ring-fill" cx="100" cy="100" r="50"
+              fill="none" stroke="url(#rg2)" stroke-width="18"
+              stroke-linecap="round"
+              transform="rotate(-90 100 100)"
+              style="stroke-dasharray:0 314.2;"/>
+            <circle id="ring-c" class="ring-fill" cx="100" cy="100" r="28"
+              fill="none" stroke="url(#rg3)" stroke-width="18"
+              stroke-linecap="round"
+              transform="rotate(-90 100 100)"
+              style="stroke-dasharray:0 175.9;"/>
+            <!-- Center text -->
+            <text x="100" y="96" text-anchor="middle" font-family="Audiowide" font-size="13" fill="white">Orizon</text>
+            <text x="100" y="113" text-anchor="middle" font-family="Roboto" font-size="9" fill="rgba(255,255,255,.45)">Scale</text>
+          </svg>
+        </div>
+        <div class="met-chart-legend">
+          <div class="mcl">
+            <div class="mcl-dot" style="background:var(--bd);"></div>
+            <span class="mcl-txt">Countries — 50+ markets with active sell-through</span>
+          </div>
+          <div class="mcl">
+            <div class="mcl-dot" style="background:var(--bl);"></div>
+            <span class="mcl-txt">Retail groups — 35+ major chains activated</span>
+          </div>
+          <div class="mcl">
+            <div class="mcl-dot" style="background:var(--pear);"></div>
+            <span class="mcl-txt">Units shipped — 240k+ globally and growing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW WE WORK ===================== -->
+<section id="hww" aria-labelledby="hww-h2">
+  <div class="wrap">
+    <div class="hww-grid">
+      <div class="hww-txt">
+        <div class="eyebrow rv">How we work</div>
+        <h2 id="hww-h2" class="rv d1">Retail-grade execution,<br>built for repeatable outcomes</h2>
+        <p class="hww-sub rv d2">
+          A structured four-step process that takes a range from strategy to live shelf — and keeps it there. No one-off drops. No abandoned SKUs. Repeatable retail performance by design.
+        </p>
+        <div class="hww-steps">
+          <div class="hww-step rv d1">
+            <div class="hww-num" aria-hidden="true">01</div>
+            <div class="hww-sc">
+              <h3>Range Strategy</h3>
+              <p>Market analysis, retail brief, product architecture, and category opportunity mapping to define the right range for the right shelf.</p>
+            </div>
+          </div>
+          <div class="hww-step rv d2">
+            <div class="hww-num" aria-hidden="true">02</div>
+            <div class="hww-sc">
+              <h3>Product &amp; Packaging</h3>
+              <p>Industrial design, compliance engineering, packaging development, and retail margin calibration — everything needed to pass a buyer review.</p>
+            </div>
+          </div>
+          <div class="hww-step rv d3">
+            <div class="hww-num" aria-hidden="true">03</div>
+            <div class="hww-sc">
+              <h3>Retail Rollout</h3>
+              <p>Buyer introductions, trade terms, planogram coordination, logistics, and initial activation across targeted retail groups.</p>
+            </div>
+          </div>
+          <div class="hww-step rv d4">
+            <div class="hww-num" aria-hidden="true">04</div>
+            <div class="hww-sc">
+              <h3>Always-On Execution</h3>
+              <p>Ongoing sell-through monitoring, range refreshes, promotional execution, and account management to keep ranges performing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- stacked images -->
+      <div class="hww-imgs rv d3" aria-hidden="true">
+        <div class="hww-img1">
+          <img src="https://orizon-hub.com/wp-content/uploads/2025/02/Orizon-article-main-image-2.png"
+               alt="" loading="lazy">
+        </div>
+        <div class="hww-img2">
+          <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-12-1024x644.png"
+               alt="" loading="lazy">
+        </div>
+        <div class="hww-img3">
+          <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGB-Sound-Bar.jpg"
+               alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BRANDS — DRAGONSHOCK ===================== -->
+<section id="brands" aria-labelledby="ds-h2">
+  <div class="bsec bsec--dark">
+    <div class="bsec-inner wrap-wide">
+      <div class="btxt-col">
+        <img class="blogo rv"
+             src="https://orizon-hub.com/wp-content/uploads/2025/02/DRAGON-SHOCK-LOGO-5-1024x313.png"
+             alt="DragonShock" height="40" loading="lazy">
+        <div class="eyebrow eyebrow--w rv d1">Our Brand</div>
+        <h2 id="ds-h2" class="bsec-h2 rv d2">Controllers, headsets &amp; audio for every gamer</h2>
+        <div class="bsec-tagline rv d3">Control Your Destiny</div>
+        <p class="bsec-p rv d3">
+          DragonShock is our flagship gaming accessory brand — a growing range of controllers, headsets, audio bars, and accessories built for serious gamers across all major platforms.
+          Every product is designed for shelf performance, priced for retail reality, and built to last.
+        </p>
+        <div class="bpills rv d4">
+          <span class="bpill">Multi-platform</span>
+          <span class="bpill">CE certified</span>
+          <span class="bpill">Retail-ready</span>
+          <span class="bpill">Continuously updated</span>
+        </div>
+        <a href="https://orizon-hub.com/our-brands/" class="btn btn-ghost-w rv d5">Explore DragonShock</a>
+      </div>
+      <div class="bimg-col" aria-hidden="true">
+        <div class="bcarousel" data-brand="ds" id="ds-carousel">
+          <div class="bslide ac">
+            <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGC02-PS2-BK-3D-03.png"
+                 alt="" loading="lazy">
+          </div>
+          <div class="bslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGB-Sound-Bar.jpg"
+                 alt="" loading="lazy">
+          </div>
+          <div class="bslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-11-866x1024.png"
+                 alt="" loading="lazy">
+          </div>
+        </div>
+        <div class="bdots" data-brand="ds" aria-label="DragonShock product images">
+          <button class="bdot ac" aria-label="Slide 1"></button>
+          <button class="bdot" aria-label="Slide 2"></button>
+          <button class="bdot" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EGOGEAR -->
+  <div class="bsec bsec--light bsec--rev" aria-labelledby="eg-h2">
+    <div class="bsec-inner wrap-wide">
+      <div class="btxt-col">
+        <img class="blogo rv"
+             src="https://orizon-hub.com/wp-content/uploads/2025/02/EG-LOGO-V2.0%EF%BC%88BLACK%EF%BC%89-2-e1739544960916-1024x541.png"
+             alt="EgoGear" height="40" loading="lazy">
+        <div class="eyebrow rv d1">Our Brand</div>
+        <h2 id="eg-h2" class="bsec-h2 rv d2">Premium peripherals for competitive players</h2>
+        <div class="bsec-tagline rv d3">Be Proud Of Your Skill</div>
+        <p class="bsec-p rv d3">
+          EgoGear is our premium gaming accessory brand targeting competitive and enthusiast players.
+          Elevated materials, sharper design, and performance-first specs — for players who take their setup seriously.
+        </p>
+        <div class="bpills rv d4">
+          <span class="bpill">Premium segment</span>
+          <span class="bpill">Performance-spec</span>
+          <span class="bpill">Enthusiast-grade</span>
+          <span class="bpill">Competition-ready</span>
+        </div>
+        <a href="https://orizon-hub.com/our-brands/" class="btn btn-primary rv d5">Explore EgoGear</a>
+      </div>
+      <div class="bimg-col" aria-hidden="true">
+        <div class="bcarousel" data-brand="eg" id="eg-carousel">
+          <div class="bslide ac">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-12-1024x644.png"
+                 alt="" loading="lazy">
+          </div>
+          <div class="bslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/2-1.png"
+                 alt="" loading="lazy">
+          </div>
+          <div class="bslide">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-11-866x1024.png"
+                 alt="" loading="lazy">
+          </div>
+        </div>
+        <div class="bdots" data-brand="eg" aria-label="EgoGear product images">
+          <button class="bdot ac" aria-label="Slide 1"></button>
+          <button class="bdot" aria-label="Slide 2"></button>
+          <button class="bdot" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PILLARS ===================== -->
+<section id="pillars" aria-labelledby="pil-h2">
+  <div class="wrap pil-inner">
+    <div class="pil-hdr rv">
+      <div class="eyebrow eyebrow--c">Partner Programs</div>
+      <h2 id="pil-h2">Four pillars of execution</h2>
+      <p>Our approach to partner programs is built around four repeatable pillars — each one designed to drive durable retail performance.</p>
+    </div>
+    <div class="ptabs" role="tablist" aria-label="Execution pillars">
+      <button class="ptab ac" role="tab" aria-selected="true" aria-controls="pp-1" id="pt-1">Range Architecture</button>
+      <button class="ptab" role="tab" aria-selected="false" aria-controls="pp-2" id="pt-2">Retail Network</button>
+      <button class="ptab" role="tab" aria-selected="false" aria-controls="pp-3" id="pt-3">Brand Development</button>
+      <button class="ptab" role="tab" aria-selected="false" aria-controls="pp-4" id="pt-4">Always-On Execution</button>
+    </div>
+    <!-- Panel 1 -->
+    <div class="ppanel ac" id="pp-1" role="tabpanel" aria-labelledby="pt-1">
+      <div class="ppanel-img rv">
+        <img src="https://orizon-hub.com/wp-content/uploads/2025/02/Orizon-article-main-image-2.png"
+             alt="Range architecture" loading="lazy">
+      </div>
+      <div class="ppanel-txt rv d2">
+        <div class="eyebrow">Pillar 01</div>
+        <h3>Range Architecture</h3>
+        <p>We design ranges that make commercial sense — right products, right price points, right category mix. Not a single SKU, but a coherent range that earns its shelf space and maximizes category revenue for retail partners.</p>
+        <div class="pstats">
+          <div class="pstat-box"><div class="pstat-n">35+</div><div class="pstat-l">Active retail partners</div></div>
+          <div class="pstat-box"><div class="pstat-n">50+</div><div class="pstat-l">Markets reached</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Panel 2 -->
+    <div class="ppanel" id="pp-2" role="tabpanel" aria-labelledby="pt-2">
+      <div class="ppanel-img rv">
+        <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-12-1024x644.png"
+             alt="Retail network" loading="lazy">
+      </div>
+      <div class="ppanel-txt rv d2">
+        <div class="eyebrow">Pillar 02</div>
+        <h3>Retail Network</h3>
+        <p>A pre-built network of 35+ retail groups across Europe and beyond — meaning new ranges get access to established channels from day one. No cold-calling. No wasted cycles. Direct relationships that get products on shelf faster.</p>
+        <div class="pstats">
+          <div class="pstat-box"><div class="pstat-n">35+</div><div class="pstat-l">Retail groups</div></div>
+          <div class="pstat-box"><div class="pstat-n">Europe</div><div class="pstat-l">Primary market focus</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Panel 3 -->
+    <div class="ppanel" id="pp-3" role="tabpanel" aria-labelledby="pt-3">
+      <div class="ppanel-img rv">
+        <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGC02-PS2-BK-3D-03.png"
+             alt="Brand development" loading="lazy">
+      </div>
+      <div class="ppanel-txt rv d2">
+        <div class="eyebrow">Pillar 03</div>
+        <h3>Brand Development</h3>
+        <p>We build gaming accessory brands from concept to shelf — product development, industrial design, packaging, and brand identity. Everything a range needs to win at retail, developed in-house with proven executional discipline.</p>
+        <div class="pstats">
+          <div class="pstat-box"><div class="pstat-n">2</div><div class="pstat-l">Own brands at scale</div></div>
+          <div class="pstat-box"><div class="pstat-n">Full</div><div class="pstat-l">End-to-end capability</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Panel 4 -->
+    <div class="ppanel" id="pp-4" role="tabpanel" aria-labelledby="pt-4">
+      <div class="ppanel-img rv">
+        <img src="https://orizon-hub.com/wp-content/uploads/2025/02/RGB-Sound-Bar.jpg"
+             alt="Always-on execution" loading="lazy">
+      </div>
+      <div class="ppanel-txt rv d2">
+        <div class="eyebrow">Pillar 04</div>
+        <h3>Always-On Execution</h3>
+        <p>Range performance doesn't end at launch. We monitor sell-through, manage range refreshes, coordinate promotional activations, and maintain account relationships — keeping ranges commercially relevant month after month.</p>
+        <div class="pstats">
+          <div class="pstat-box"><div class="pstat-n">240k+</div><div class="pstat-l">Units shipped</div></div>
+          <div class="pstat-box"><div class="pstat-n">Ongoing</div><div class="pstat-l">Account management</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA SLIDER ===================== -->
+<section id="fcta" aria-labelledby="fcta-h2">
+  <div class="wrap fcta-inner">
+    <div class="fcta-hdr rv">
+      <div class="eyebrow eyebrow--c eyebrow--w">Work with Orizon</div>
+      <h2 id="fcta-h2">Let's turn ranges into repeatable retail wins</h2>
+    </div>
+    <div class="fcta-tagline rv d2">Whatever your role — we have a path for you.</div>
+    <div class="fslider-wrap rv d3">
+      <div class="fslider" id="fslider">
+        <!-- Slide 1 — Retailers & Distributors -->
+        <div class="fslide" role="article">
+          <div class="fslide-img">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Design-sans-titre-12-1024x644.png"
+                 alt="" loading="lazy">
+            <div class="fslide-img-ov"></div>
+          </div>
+          <div class="fslide-body">
+            <h3>Retailers &amp; Distributors</h3>
+            <p>Looking for gaming accessory ranges with proven sell-through? We can activate your category with ranges built for retail margin performance — and the execution to keep them there.</p>
+            <a href="https://orizon-hub.com/contact/" class="btn btn-white">Request the line-up</a>
+          </div>
+        </div>
+        <!-- Slide 2 — Press & Collaborations -->
+        <div class="fslide" role="article">
+          <div class="fslide-img">
+            <img src="https://orizon-hub.com/wp-content/uploads/2025/02/Orizon-article-main-image-2.png"
+                 alt="" loading="lazy">
+            <div class="fslide-img-ov"></div>
+          </div>
+          <div class="fslide-body">
+            <h3>Press &amp; Collaborations</h3>
+            <p>Building a story around gaming retail, brand development, or accessory market trends? We're happy to contribute — from media briefings to collaboration partnerships.</p>
+            <a href="https://orizon-hub.com/press/" class="btn btn-ghost-w">Explore press</a>
+          </div>
+        </div>
+        <!-- Slide 3 — Careers -->
+        <div class="fslide" role="article">
+          <div class="fslide-img">
+            <img src="https://orizon-hub.com/wp-content/uploads/2024/11/2-1.png"
+                 alt="" loading="lazy">
+            <div class="fslide-img-ov"></div>
+          </div>
+          <div class="fslide-body">
+            <h3>Careers at Orizon</h3>
+            <p>We're building something ambitious — a gaming brand and distribution business operating at real scale. If you're driven by retail execution and brand growth, we'd like to meet you.</p>
+            <a href="https://orizon-hub.com/contact/" class="btn btn-pear">View opportunities</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fsnav" role="tablist" aria-label="CTA slides navigation">
+      <button class="fsdot ac" role="tab" aria-label="Slide 1 — Retailers"></button>
+      <button class="fsdot" role="tab" aria-label="Slide 2 — Press"></button>
+      <button class="fsdot" role="tab" aria-label="Slide 3 — Careers"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq" aria-labelledby="faq-h2">
+  <div class="wrap">
+    <div class="faq-hdr rv">
+      <div class="eyebrow eyebrow--c">Questions</div>
+      <h2 id="faq-h2">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          <h3>What types of partners does Orizon work with?</h3>
+          <span class="fchev" aria-hidden="true">
+            <svg viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="1,1 6,6 11,1"/>
+            </svg>
+          </span>
+        </button>
+        <div class="fa" role="region">
+          <p>Orizon works with retailers, distributors, IP owners, and gaming brands looking to build or scale gaming accessory ranges in Europe and selected international markets. We partner at every stage — from range development through to full distribution and retail activation.</p>
+        </div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          <h3>Do you develop products for third-party brands?</h3>
+          <span class="fchev" aria-hidden="true">
+            <svg viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="1,1 6,6 11,1"/>
+            </svg>
+          </span>
+        </button>
+        <div class="fa" role="region">
+          <p>Yes. Through our Brand &amp; Product Development engine, we can develop gaming accessory ranges from concept to shelf for IP owners, gaming brands, and partners who want their own labeled product range. This includes product design, packaging, compliance, and retail-margin engineering.</p>
+        </div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          <h3>Which markets do you currently operate in?</h3>
+          <span class="fchev" aria-hidden="true">
+            <svg viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="1,1 6,6 11,1"/>
+            </svg>
+          </span>
+        </button>
+        <div class="fa" role="region">
+          <p>We primarily operate across Europe, with active distribution across 35+ retail groups and presence in 50+ countries. We are also capable of international expansion beyond Europe for the right ranges and partnerships.</p>
+        </div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          <h3>How do I request a product line-up or catalog?</h3>
+          <span class="fchev" aria-hidden="true">
+            <svg viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="1,1 6,6 11,1"/>
+            </svg>
+          </span>
+        </button>
+        <div class="fa" role="region">
+          <p>Use the "Request the line-up" button in the header or contact us directly via our contact page. We'll send you the relevant catalog and range information for your market and category interest.</p>
+        </div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          <h3>What is the difference between DragonShock and EgoGear?</h3>
+          <span class="fchev" aria-hidden="true">
+            <svg viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <polyline points="1,1 6,6 11,1"/>
+            </svg>
+          </span>
+        </button>
+        <div class="fa" role="region">
+          <p>DragonShock is our flagship mainstream gaming accessory brand — broad platform coverage, wide retail price points, and a focus on accessible performance. EgoGear targets the premium and competitive gaming segment — higher specifications, elevated design, and positioning for the enthusiast and esports-adjacent consumer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BIG CTA BAND ===================== -->
+<section id="bigcta" aria-labelledby="bigcta-h2">
+  <div class="wrap bcta-inner">
+    <div class="bcta-txt rv">
+      <h2 id="bigcta-h2">Ready to build ranges that last?</h2>
+      <p>Speak to the Orizon team about your range, your category, or your market.</p>
+    </div>
+    <div class="bcta-ctas rv d2">
+      <a href="https://orizon-hub.com/contact/" class="btn btn-pear">Let's Talk</a>
+      <a href="https://orizon-hub.com/contact/" class="btn btn-ghost-w">Request the line-up</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="ftr" aria-label="Site footer">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div class="fbrand">
+        <img src="https://orizon-hub.com/wp-content/uploads/2024/11/Orizon_white_transparent.png"
+             alt="Orizon" width="120" height="28" loading="lazy">
+        <p>Gaming brands. Partner programs. Built to scale. Europe's gaming accessory specialists.</p>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://orizon-hub.com/about-us/">About Us</a></li>
+          <li><a href="https://orizon-hub.com/our-brands/">Our Brands</a></li>
+          <li><a href="https://orizon-hub.com/press/">Press</a></li>
+          <li><a href="https://orizon-hub.com/contact/">Careers</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="https://orizon-hub.com/ranges/">All Ranges</a></li>
+          <li><a href="https://orizon-hub.com/our-brands/">DragonShock</a></li>
+          <li><a href="https://orizon-hub.com/our-brands/">EgoGear</a></li>
+          <li><a href="https://orizon-hub.com/contact/">Partner Programs</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <a class="femail" href="mailto:hello@orizon-hub.com">hello@orizon-hub.com</a>
+        <div class="fsoc" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/orizon-hub" aria-label="LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/orizonhub/" aria-label="Instagram" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>&copy; 2025 Orizon. All rights reserved.</p>
+      <div class="flegal">
+        <a href="https://orizon-hub.com/privacy-policy/">Privacy Policy</a>
+        <a href="https://orizon-hub.com/legal/">Legal</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</main><!-- /main -->
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+(function(){
+  'use strict';
+
+  /* ---- HEADER SCROLL STATE ---- */
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- MOBILE NAV ---- */
+  const hbg = document.getElementById('hbg');
+  const mnav = document.getElementById('mnav');
+  hbg.addEventListener('click', () => {
+    const open = mnav.classList.toggle('open');
+    hbg.classList.toggle('open', open);
+    hbg.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mnav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mnav.classList.remove('open');
+      hbg.classList.remove('open');
+      hbg.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ---- SCROLL REVEAL ---- */
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.rv,.rv-left,.rv-right').forEach(el => ro.observe(el));
+
+  /* ---- ENGINE TABS ---- */
+  const etabs = document.querySelectorAll('.etab');
+  const epanels = document.querySelectorAll('.epanel');
+  etabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      etabs.forEach(t => { t.classList.remove('ac'); t.setAttribute('aria-selected','false'); });
+      epanels.forEach(p => p.classList.remove('ac'));
+      tab.classList.add('ac'); tab.setAttribute('aria-selected','true');
+      document.getElementById(tab.getAttribute('aria-controls')).classList.add('ac');
+    });
+  });
+
+  /* ---- ENGINE IMAGE SLIDES ---- */
+  function initEngineSlides(wrapper) {
+    const slides = wrapper.querySelectorAll('.eslide');
+    const dots = wrapper.parentElement.querySelectorAll('.edot');
+    let cur = 0, timer;
+    function go(n) {
+      slides[cur].classList.remove('ac');
+      dots[cur].classList.remove('ac');
+      cur = (n + slides.length) % slides.length;
+      slides[cur].classList.add('ac');
+      dots[cur].classList.add('ac');
+    }
+    function start() {
+      timer = setInterval(() => go(cur+1), 3800);
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => { clearInterval(timer); go(i); start(); }));
+    start();
+  }
+  document.querySelectorAll('.eslides').forEach(initEngineSlides);
+
+  /* ---- BRAND CAROUSELS ---- */
+  function initCarousel(id, dotSel) {
+    const carousel = document.getElementById(id);
+    if(!carousel) return;
+    const slides = carousel.querySelectorAll('.bslide');
+    const dots = document.querySelectorAll(dotSel + ' .bdot');
+    let cur = 0, timer;
+    function go(n) {
+      slides[cur].classList.remove('ac');
+      dots[cur].classList.remove('ac');
+      cur = (n + slides.length) % slides.length;
+      slides[cur].classList.add('ac');
+      dots[cur].classList.add('ac');
+    }
+    function start() { timer = setInterval(() => go(cur+1), 3800); }
+    dots.forEach((d,i) => d.addEventListener('click', () => { clearInterval(timer); go(i); start(); }));
+    start();
+  }
+  initCarousel('ds-carousel', '[data-brand="ds"]');
+  initCarousel('eg-carousel', '[data-brand="eg"]');
+
+  /* ---- PILLAR TABS ---- */
+  const ptabs = document.querySelectorAll('.ptab');
+  const ppanels = document.querySelectorAll('.ppanel');
+  ptabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      ptabs.forEach(t => { t.classList.remove('ac'); t.setAttribute('aria-selected','false'); });
+      ppanels.forEach(p => p.classList.remove('ac'));
+      tab.classList.add('ac'); tab.setAttribute('aria-selected','true');
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      panel.classList.add('ac');
+      // re-trigger scroll reveal on panel children
+      panel.querySelectorAll('.rv,.rv-left,.rv-right').forEach(el => {
+        if(!el.classList.contains('in')) { el.classList.add('in'); }
+      });
+    });
+  });
+
+  /* ---- FINAL CTA SLIDER ---- */
+  const fslider = document.getElementById('fslider');
+  const fsdots = document.querySelectorAll('.fsdot');
+  const fslides = fslider.querySelectorAll('.fslide');
+  let fCur = 0;
+  const slideW = () => fslides[0].offsetWidth + 28; // 28 = gap
+
+  function fGo(n) {
+    fCur = Math.max(0, Math.min(n, fslides.length - 1));
+    // on wide screens show all 3; on narrow, slide
+    const visible = window.innerWidth > 1100 ? 3 : (window.innerWidth > 768 ? 2 : 1);
+    const maxOffset = (fslides.length - visible) * slideW();
+    const offset = Math.min(fCur * slideW(), maxOffset);
+    fslider.style.transform = `translateX(-${offset}px)`;
+    fsdots.forEach((d,i) => d.classList.toggle('ac', i===fCur));
+  }
+  fsdots.forEach((d,i) => d.addEventListener('click', () => fGo(i)));
+
+  // drag-to-slide
+  let fStartX = 0, fDragging = false;
+  fslider.addEventListener('pointerdown', e => { fStartX = e.clientX; fDragging = true; });
+  fslider.addEventListener('pointermove', e => {
+    if(!fDragging) return;
+    if(Math.abs(e.clientX - fStartX) > 8) fslider.setPointerCapture(e.pointerId);
+  });
+  fslider.addEventListener('pointerup', e => {
+    if(!fDragging) return;
+    fDragging = false;
+    const diff = e.clientX - fStartX;
+    if(diff < -40) fGo(fCur + 1);
+    else if(diff > 40) fGo(fCur - 1);
+  });
+
+  /* ---- ANIMATED COUNTERS ---- */
+  const countRows = document.querySelectorAll('.mcount-row');
+  let counted = false;
+  const countObs = new IntersectionObserver(entries => {
+    if(counted) return;
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        counted = true;
+        countRows.forEach((row, i) => {
+          const target = parseInt(row.dataset.target, 10);
+          const suffix = row.dataset.suffix || '';
+          const el = row.querySelector('.mcount-num');
+          const duration = 1700;
+          const start = performance.now();
+          function tick(now) {
+            const t = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            const val = Math.round(ease * target);
+            el.textContent = val + suffix;
+            if(t < 1) requestAnimationFrame(tick);
+          }
+          setTimeout(() => requestAnimationFrame(tick), i * 180);
+        });
+        // also trigger bar fills & ring animations
+        document.querySelectorAll('.mcount-fill').forEach(f => f.classList.add('go'));
+        setTimeout(() => {
+          const ra = document.getElementById('ring-a');
+          const rb = document.getElementById('ring-b');
+          const rc = document.getElementById('ring-c');
+          if(ra) { ra.style.strokeDasharray = '384 452'; }
+          if(rb) { rb.style.strokeDasharray = '260 314'; }
+          if(rc) { rc.style.strokeDasharray = '148 176'; }
+        }, 200);
+        countObs.disconnect();
+      }
+    });
+  }, {threshold:.3});
+  if(countRows.length) countObs.observe(countRows[0]);
+
+  /* ---- FAQ ACCORDION ---- */
+  document.querySelectorAll('.fq').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.fitem');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.fitem.open').forEach(fi => {
+        fi.classList.remove('open');
+        fi.querySelector('.fq').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+    btn.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
